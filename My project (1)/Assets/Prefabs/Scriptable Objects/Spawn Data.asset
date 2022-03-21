@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c79db06b3aa314187acd643b2316b5, type: 3}
   m_Name: Spawn Data
   m_EditorClassIdentifier: 
-  time: 5
+  time: 1
