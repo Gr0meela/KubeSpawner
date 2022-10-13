@@ -3,23 +3,20 @@ using UnityEngine;
 public class MoveForward : MonoBehaviour
 {
     [SerializeField] private CubeData cubeData;
+    private Vector3 finish;
     private float speed;
     private float distance;
-    private float progress;
-    private Vector3 start;
-    private Vector3 finish;
-    void Awake()
+    private float delta;
+    private void Start()
     {
         speed = cubeData.speed;
         distance = cubeData.distance;
-        start = transform.position;
-        finish = start + Vector3.forward * distance;
+        finish = transform.position + Vector3.forward * distance;
     }
-    void FixedUpdate()
+    private void Update()
     {
-        transform.position = Vector3.Lerp(start, finish, progress);
-        progress += speed/ 250f;
-
+        delta = Time.deltaTime * speed;
+        transform.position = Vector3.MoveTowards(transform.position, finish, delta);
         if (transform.position == finish)
             Destroy(gameObject);
     }

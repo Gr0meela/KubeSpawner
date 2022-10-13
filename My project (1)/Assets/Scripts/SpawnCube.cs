@@ -6,18 +6,20 @@ public class SpawnCube : MonoBehaviour
     [SerializeField] private GameObject cube;
     [SerializeField] private SpawnData spawn;
     private float time;
-    private void Awake()
+    private void Start()
     {
         StartCoroutine(DoSpawn());
     }
-    void FixedUpdate()
+    private void Update()
     {
         time = spawn.time;
     }
     IEnumerator DoSpawn()
     {
-        Instantiate(cube);
-        yield return new WaitForSeconds(time);
-        StartCoroutine(DoSpawn());
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            Instantiate(cube, transform.position, Quaternion.identity);
+        }
     }
 }
